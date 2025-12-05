@@ -1,0 +1,9 @@
+cd "C:\Users\Usuario\Desktop\tuweben24h.com"
+
+git add -A
+
+git commit -m "Add: Guías completas de Git/GitHub y documentación actualizada"
+
+git push origin main
+
+git log --oneline -n 3
