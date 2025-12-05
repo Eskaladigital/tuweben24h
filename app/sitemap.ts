@@ -2,11 +2,6 @@ import { MetadataRoute } from 'next'
 import { createClient } from '@supabase/supabase-js'
 import { ciudades } from '@/lib/ciudades-data'
 
-// Cliente de Supabase para el servidor
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-const supabase = createClient(supabaseUrl, supabaseAnonKey)
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://tuweben24h.com'
   
@@ -124,23 +119,32 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Obtener posts del blog publicados
   let blogPages: MetadataRoute.Sitemap = []
   
-  try {
-    const { data: posts } = await supabase
-      .from('blog_posts')
-      .select('slug, updated_at, fecha_publicacion')
-      .eq('publicado', true)
-      .order('fecha_publicacion', { ascending: false })
-    
-    if (posts && posts.length > 0) {
-      blogPages = posts.map((post) => ({
-        url: `${baseUrl}/blog/${post.slug}`,
-        lastModified: new Date(post.updated_at || post.fecha_publicacion || new Date()),
-        changeFrequency: 'weekly' as const,
-        priority: 0.7,
-      }))
+  // Solo intentar obtener posts si existen las variables de entorno de Supabase
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  
+  if (supabaseUrl && supabaseAnonKey) {
+    try {
+      const supabase = createClient(supabaseUrl, supabaseAnonKey)
+      const { data: posts } = await supabase
+        .from('blog_posts')
+        .select('slug, updated_at, fecha_publicacion')
+        .eq('publicado', true)
+        .order('fecha_publicacion', { ascending: false })
+      
+      if (posts && posts.length > 0) {
+        blogPages = posts.map((post) => ({
+          url: `${baseUrl}/blog/${post.slug}`,
+          lastModified: new Date(post.updated_at || post.fecha_publicacion || new Date()),
+          changeFrequency: 'weekly' as const,
+          priority: 0.7,
+        }))
+      }
+    } catch (error) {
+      console.error('Error obteniendo posts para sitemap:', error)
     }
-  } catch (error) {
-    console.error('Error obteniendo posts para sitemap:', error)
+  } else {
+    console.log('Supabase no configurado, generando sitemap sin posts del blog')
   }
   
   return [

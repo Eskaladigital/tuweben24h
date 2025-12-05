@@ -230,6 +230,16 @@ npm run dev
 
 ## 🚀 Despliegue
 
+### AWS Amplify
+
+📖 **Guía completa:** [AWS-AMPLIFY-SETUP.md](./AWS-AMPLIFY-SETUP.md)
+
+**Variables de entorno requeridas:**
+```
+NEXT_PUBLIC_SUPABASE_URL=tu_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_supabase_anon_key
+```
+
 ### Vercel (Recomendado)
 
 ```bash
