@@ -3,9 +3,15 @@ import { createClient } from '@supabase/supabase-js'
 import BlogPostClient from './BlogPostClient'
 
 // Cliente de Supabase para el servidor
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-const supabase = createClient(supabaseUrl, supabaseAnonKey)
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+const getSupabase = () => {
+  if (supabaseUrl && supabaseAnonKey) {
+    return createClient(supabaseUrl, supabaseAnonKey)
+  }
+  return null
+}
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -16,6 +22,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   
   try {
+    const supabase = getSupabase()
+    if (!supabase) {
+      // Fallback sin DB
+      return {
+        title: `Blog | TuWebEn24h`,
+        description: 'Artículo del blog de TuWebEn24h',
+      }
+    }
+
     const { data: post, error } = await supabase
       .from('blog_posts')
       .select('titulo, extracto, imagen_destacada, autor_nombre, fecha_publicacion, categoria, etiquetas, seo_titulo, seo_descripcion')
@@ -79,6 +94,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // Generar JSON-LD para artículos
 async function getArticleJsonLd(slug: string) {
   try {
+    const supabase = getSupabase()
+    if (!supabase) return null
+
     const { data: post } = await supabase
       .from('blog_posts')
       .select('*')

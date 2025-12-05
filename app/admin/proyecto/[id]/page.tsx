@@ -67,6 +67,12 @@ export default function ProyectoDetallePage() {
 
   const cargarDatos = async () => {
     try {
+      if (!supabase) {
+        console.warn('Supabase no está configurado')
+        setLoading(false)
+        return
+      }
+
       const solicitudId = params.id as string
 
       // Cargar solicitud

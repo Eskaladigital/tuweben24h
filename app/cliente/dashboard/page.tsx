@@ -60,6 +60,12 @@ export default function ClienteDashboardPage() {
 
   const cargarDatos = async (email: string) => {
     try {
+      if (!supabase) {
+        console.warn('Supabase no está configurado')
+        setLoading(false)
+        return
+      }
+
       // Cargar solicitud
       const { data: solicitudData, error: solicitudError } = await supabase
         .from('solicitudes')
