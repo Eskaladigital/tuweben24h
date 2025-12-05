@@ -1,0 +1,19 @@
+# TuWebEn24h.com - Robots.txt
+# https://www.robotstxt.org/robotstxt.html
+
+User-Agent: *
+Allow: /
+Allow: /blog/
+Allow: /solicitar/
+
+# Bloquear áreas privadas
+Disallow: /admin/
+Disallow: /cliente/
+Disallow: /api/
+
+# Bloquear páginas de confirmación
+Disallow: /solicitar/confirmacion
+
+# Sitemap
+Sitemap: https://tuweben24h.com/sitemap.xml
+
