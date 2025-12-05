@@ -20,6 +20,13 @@ export default function BlogPage() {
 
   const cargarPosts = async () => {
     try {
+      if (!supabase) {
+        console.warn('Supabase no está configurado')
+        setPosts([])
+        setLoading(false)
+        return
+      }
+
       const { data, error } = await supabase
         .from('blog_posts')
         .select('*')
@@ -31,7 +38,7 @@ export default function BlogPage() {
       setPosts(data || [])
 
       // Extraer categorías únicas
-      const cats = Array.from(new Set(data?.map(p => p.categoria).filter(Boolean) as string[]))
+      const cats = Array.from(new Set(data?.map((p: BlogPost) => p.categoria).filter(Boolean) as string[]))
       setCategorias(cats)
     } catch (error) {
       console.error('Error cargando posts:', error)

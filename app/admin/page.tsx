@@ -49,6 +49,12 @@ export default function AdminDashboard() {
 
   const cargarSolicitudes = async () => {
     try {
+      if (!supabase) {
+        console.warn('Supabase no está configurado')
+        setSolicitudes([])
+        return
+      }
+
       const { data, error } = await supabase
         .from('solicitudes')
         .select('*')

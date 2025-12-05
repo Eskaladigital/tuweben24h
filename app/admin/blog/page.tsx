@@ -36,6 +36,13 @@ export default function AdminBlogPage() {
 
   const cargarPosts = async () => {
     try {
+      if (!supabase) {
+        console.warn('Supabase no está configurado')
+        setPosts([])
+        setLoading(false)
+        return
+      }
+
       const { data, error } = await supabase
         .from('blog_posts')
         .select('*')
