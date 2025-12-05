@@ -33,3 +33,4 @@ git status | Out-File $outputFile -Append
 
 Write-Host "Resultado guardado en: $outputFile"
 Write-Host "Abre ese archivo para ver los resultados"
+
