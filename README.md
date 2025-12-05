@@ -288,6 +288,27 @@ colors: {
 - FAQs en `FAQ.tsx`
 - Testimonios en `Testimonials.tsx`
 
+## 📚 Documentación Adicional
+
+### Git y GitHub
+- 📘 **[GUIA-GIT-GITHUB.md](./GUIA-GIT-GITHUB.md)** - Guía completa de Git y GitHub
+  - Comandos esenciales
+  - Flujo de trabajo diario
+  - Solución de problemas
+  - Convenciones y mejores prácticas
+  
+- ⚡ **[GIT-CHEATSHEET.md](./GIT-CHEATSHEET.md)** - Referencia rápida
+  - Comandos más usados
+  - Copiar/pegar directo
+  - Atajos y tips
+
+### Documentación del Proyecto
+- 📋 **[INDICE-DOCUMENTACION.md](./INDICE-DOCUMENTACION.md)** - Índice completo de toda la documentación
+- 🚀 **[INSTALACION-RAPIDA.md](./INSTALACION-RAPIDA.md)** - Guía de setup paso a paso
+- 💡 **[EJEMPLOS-DE-USO.md](./EJEMPLOS-DE-USO.md)** - Casos de uso prácticos
+- 🗺️ **[RUTAS-DISPONIBLES.md](./RUTAS-DISPONIBLES.md)** - Todas las URLs del sitio
+- ⭐ **[RESUMEN-EJECUTIVO.md](./RESUMEN-EJECUTIVO.md)** - Visión general completa
+
 ## 📝 Licencia
 
 Proyecto privado - Todos los derechos reservados.

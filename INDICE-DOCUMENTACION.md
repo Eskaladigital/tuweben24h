@@ -335,6 +335,20 @@ Cuándo usarlo:
    - Línea 50-150: Configuración BD
 ```
 
+### Git y GitHub
+```
+📄 GUIA-GIT-GITHUB.md
+   - Línea 1-50: Comandos esenciales
+   - Línea 51-200: Guía paso a paso
+   - Línea 201-400: Comandos avanzados
+   - Línea 401-500: Solución de problemas
+   - Línea 501+: Flujo de trabajo
+
+📄 GIT-CHEATSHEET.md
+   - Referencia rápida de todos los comandos
+   - Copiar/pegar directo
+```
+
 ### Troubleshooting
 ```
 📄 INSTALACION-RAPIDA.md
@@ -342,6 +356,9 @@ Cuándo usarlo:
 
 📄 FUNCIONALIDADES-NUEVAS.md
    - Línea 450-500: Debugging
+
+📄 GUIA-GIT-GITHUB.md
+   - Solución de problemas con Git
 ```
 
 ---
@@ -444,10 +461,15 @@ Usuario: EJEMPLOS-DE-USO.md
 - [EMPEZAR-AQUI.md](./EMPEZAR-AQUI.md) - Si existe
 - [MARKETING.md](./MARKETING.md) - Si existe
 
+### Git y GitHub
+- [GUIA-GIT-GITHUB.md](./GUIA-GIT-GITHUB.md) 📘 - Guía completa de Git
+- [GIT-CHEATSHEET.md](./GIT-CHEATSHEET.md) ⚡ - Referencia rápida de comandos
+
 ### Externos
 - [Supabase Docs](https://supabase.com/docs)
 - [Next.js Docs](https://nextjs.org/docs)
 - [Tailwind CSS](https://tailwindcss.com/docs)
+- [GitHub Repository](https://github.com/davigo33/tuweben24h.com)
 
 ---
 
