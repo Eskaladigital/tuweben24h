@@ -290,9 +290,25 @@ colors: {
 
 ## 📚 Documentación Adicional
 
-### Git y GitHub
+### Git y GitHub (IMPORTANTE para Cursor AI)
+
+**⚠️ REGLAS CRÍTICAS para commits en PowerShell/Cursor:**
+1. SIEMPRE ejecutar `$env:GIT_PAGER = ""` antes de git
+2. NO usar `&&` - PowerShell no lo soporta, usar `;`
+3. Ejecutar comandos uno por uno, no encadenados
+
+**Secuencia correcta:**
+```powershell
+$env:GIT_PAGER = ""
+git status
+git add -A
+git commit -m "Descripción del cambio"
+git push origin main
+git status
+```
+
 - 📘 **[GUIA-GIT-GITHUB.md](./GUIA-GIT-GITHUB.md)** - Guía completa de Git y GitHub
-  - Comandos esenciales
+  - Comandos esenciales para PowerShell
   - Flujo de trabajo diario
   - Solución de problemas
   - Convenciones y mejores prácticas

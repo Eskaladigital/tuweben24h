@@ -4,9 +4,23 @@
 
 ---
 
-## ⚡ Los 5 Comandos Más Usados
+## 🚨 IMPORTANTE PARA CURSOR AI
+
+### ⚠️ SIEMPRE ejecutar primero en cada sesión:
+```powershell
+$env:GIT_PAGER = ""
+```
+
+### ❌ NO usar `&&` en PowerShell - usar `;` o comandos separados
+
+---
+
+## ⚡ Los 6 Comandos para Commit y Push
 
 ```powershell
+# 0. SIEMPRE PRIMERO - Desactivar pager
+$env:GIT_PAGER = ""
+
 # 1. Ver qué cambió
 git status
 
@@ -19,17 +33,19 @@ git commit -m "Update: Descripción"
 # 4. Subir a GitHub
 git push origin main
 
-# 5. Ver historial
-git log --oneline -n 5
+# 5. Verificar
+git status
 ```
 
 ---
 
-## 🎯 Flujo Completo en 1 Línea
+## 🎯 Flujo Completo en 1 Línea (PowerShell)
 
 ```powershell
-git add -A && git commit -m "Update: Cambios realizados" && git push origin main && git status
+$env:GIT_PAGER = ""; git add -A; git commit -m "Update: Cambios realizados"; git push origin main; git status
 ```
+
+**⚠️ NOTA:** En PowerShell usar `;` NO `&&`
 
 ---
 

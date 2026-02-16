@@ -1,6 +1,55 @@
 # 📘 Guía Completa de Git y GitHub para TuWebEn24h.com
 
-**Última actualización**: 5 de Diciembre de 2025
+**Última actualización**: 16 de Febrero de 2026
+
+---
+
+## 🚨 IMPORTANTE PARA CURSOR AI (LEER PRIMERO)
+
+### ⚠️ Reglas para ejecutar comandos Git en PowerShell
+
+**PowerShell NO soporta `&&` para encadenar comandos.** Cada comando debe ejecutarse por separado.
+
+**SIEMPRE desactivar el pager de Git antes de hacer commit:**
+
+```powershell
+$env:GIT_PAGER = ""
+```
+
+### ✅ Secuencia CORRECTA para Commit y Push
+
+Ejecutar estos comandos **UNO POR UNO** (no encadenados):
+
+```powershell
+# 1. Desactivar pager (OBLIGATORIO en Cursor)
+$env:GIT_PAGER = ""
+
+# 2. Ver estado
+git status
+
+# 3. Agregar cambios
+git add -A
+
+# 4. Hacer commit
+git commit -m "Descripción del cambio"
+
+# 5. Push a GitHub
+git push origin main
+
+# 6. Verificar
+git status
+```
+
+### ❌ Lo que NO funciona en PowerShell
+
+```powershell
+# ESTO FALLA - PowerShell no soporta &&
+git add -A && git commit -m "mensaje" && git push origin main
+
+# ESTO CAUSA PROBLEMAS - El pager bloquea la terminal
+git diff --cached
+git log
+```
 
 ---
 
@@ -9,26 +58,29 @@
 ### ✅ Para hacer commit y push (lo más común)
 
 ```powershell
-# 1. Ver qué archivos han cambiado
+# 1. Desactivar pager (SIEMPRE primero en Cursor)
+$env:GIT_PAGER = ""
+
+# 2. Ver qué archivos han cambiado
 git status
 
-# 2. Agregar TODOS los cambios
+# 3. Agregar TODOS los cambios
 git add -A
 
-# 3. Hacer commit con mensaje descriptivo
+# 4. Hacer commit con mensaje descriptivo
 git commit -m "Update: Descripción clara de los cambios"
 
-# 4. Subir a GitHub
+# 5. Subir a GitHub
 git push origin main
 
-# 5. Verificar que se subió correctamente
-git log --oneline -n 3
+# 6. Verificar que se subió correctamente
+git status
 ```
 
-### ⚡ Comando Todo-en-Uno (para hacer todo de una vez)
+### ⚡ Para PowerShell - Usar punto y coma (;) en lugar de &&
 
 ```powershell
-git add -A && git commit -m "Update: Descripción de cambios" && git push origin main && git status
+$env:GIT_PAGER = ""; git add -A; git commit -m "Update: Descripción"; git push origin main; git status
 ```
 
 ---
