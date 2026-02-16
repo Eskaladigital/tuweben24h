@@ -45,6 +45,7 @@ c_Users_Usuario_AppData_Roaming_Cursor_User_workspaceStorage_*
 git-push-main.ps1
 commit-y-push.ps1
 verificar-git.bat
+verificar-build.ps1
 
 # Archivos de notas/instrucciones temporales
 codigo*.txt

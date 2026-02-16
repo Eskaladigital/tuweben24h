@@ -134,17 +134,14 @@ export const WhatsAppButton = () => {
         )}
       </AnimatePresence>
 
-      {/* Floating Button */}
+      {/* Floating Button - Diseño sencillo blanco y negro */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-16 h-16 rounded-full shadow-2xl transition-all duration-300"
-        style={{
-          backgroundColor: '#25D366',
-        }}
+        className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-white border-2 border-black shadow-lg hover:shadow-xl transition-all duration-300"
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        whileHover={{ scale: 1.15, boxShadow: "0 10px 30px rgba(37, 211, 102, 0.4)" }}
+        whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Abrir chat de WhatsApp"
       >
@@ -156,12 +153,13 @@ export const WhatsAppButton = () => {
               animate={{ rotate: 0, opacity: 1 }}
               exit={{ rotate: 180, opacity: 0 }}
               transition={{ duration: 0.2 }}
-              width="24"
-              height="24"
+              width="22"
+              height="22"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="white"
+              stroke="currentColor"
               strokeWidth="2"
+              className="text-black"
             >
               <path d="M18 6L6 18M6 6l12 12" />
             </motion.svg>
@@ -172,18 +170,17 @@ export const WhatsAppButton = () => {
               animate={{ rotate: 0, opacity: 1 }}
               exit={{ rotate: -180, opacity: 0 }}
               transition={{ duration: 0.2 }}
-              width="42"
-              height="42"
-              viewBox="0 0 39 39"
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-black"
             >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M19.5 0C8.73 0 0 8.73 0 19.5c0 3.45 0.9 6.69 2.46 9.51L0.855 36.45l7.65-2.01c2.7 1.47 5.79 2.31 9.075 2.31h.015C30.27 36.75 39 28.02 39 17.25c0-5.22-2.04-10.125-5.73-13.815C29.58 0 24.69 0 19.5 0zm0 3.51c4.29 0 8.325 1.665 11.37 4.71 3.045 3.045 4.71 7.08 4.71 11.37 0 8.85-7.2 16.065-16.05 16.065-2.64 0-5.25-.645-7.545-1.875l-.54-.285-5.58 1.47 1.485-5.43-.315-.555c-1.35-2.4-2.055-5.13-2.055-7.92 0-8.835 7.2-16.05 16.05-16.05zm-5.85 13.125c-.24-.54-.495-.555-.72-.555-.195 0-.405-.015-.63-.015-.225 0-.585.09-.885.435-.3.33-1.14 1.11-1.14 2.715 0 1.59 1.17 3.135 1.335 3.36.165.225 2.325 3.54 5.625 4.965.78.345 1.395.54 1.875.69.78.24 1.485.21 2.04.135.63-.09 1.92-.78 2.19-1.53.27-.75.27-1.395.195-1.53-.075-.135-.285-.225-.615-.375-.315-.15-1.875-.93-2.175-1.035-.3-.105-.51-.15-.72.15-.21.3-.81.99-1.005 1.2-.195.21-.375.225-.69.075-.315-.15-1.32-.495-2.52-1.56-.93-.825-1.56-1.86-1.74-2.175-.18-.315-.015-.48.135-.645.135-.135.315-.36.465-.54.15-.18.195-.3.3-.51.105-.21.045-.39-.03-.54-.075-.15-.72-1.725-.99-2.37z"
-                fill="white"
-              />
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
             </motion.svg>
           )}
         </AnimatePresence>
