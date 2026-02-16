@@ -11,9 +11,10 @@ export function initGoogleAnalytics(measurementId: string) {
   document.head.appendChild(script)
 
   // Inicializar gtag
-  window.dataLayer = window.dataLayer || []
+  const win = window as Window & { dataLayer: unknown[] }
+  win.dataLayer = win.dataLayer || []
   function gtag(...args: any[]) {
-    window.dataLayer.push(args)
+    win.dataLayer.push(args)
   }
   gtag('js', new Date())
   gtag('config', measurementId, {

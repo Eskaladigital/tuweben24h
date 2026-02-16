@@ -166,3 +166,4 @@ Luego solo escribe: `gs`, `ga`, `gc "mensaje"`, `gp`, `gl`
 
 
 
+

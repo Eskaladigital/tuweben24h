@@ -65,3 +65,4 @@ Para más detalles, consulta: **[GUIA-SUPABASE.md](GUIA-SUPABASE.md)**
 
 
 
+

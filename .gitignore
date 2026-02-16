@@ -40,3 +40,12 @@ CREDENCIALES-ADMIN.md
 
 # Cursor
 c_Users_Usuario_AppData_Roaming_Cursor_User_workspaceStorage_*
+
+# Scripts temporales de desarrollo (no necesarios en producción)
+git-push-main.ps1
+commit-y-push.ps1
+verificar-git.bat
+
+# Archivos de notas/instrucciones temporales
+codigo*.txt
+ejecutar*.txt
