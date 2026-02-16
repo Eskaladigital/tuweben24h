@@ -149,7 +149,7 @@ export async function bucketExists(bucket: string): Promise<boolean> {
       return false
     }
 
-    return data.some(b => b.name === bucket)
+    return (data as { name: string }[]).some((b) => b.name === bucket)
   } catch {
     return false
   }
