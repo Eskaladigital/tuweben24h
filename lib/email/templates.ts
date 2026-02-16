@@ -14,6 +14,12 @@ interface EmailData {
 }
 
 export async function enviarEmailConfirmacionCliente(data: EmailData) {
+  // Si no hay API key configurada, solo loguear (modo desarrollo)
+  if (!process.env.RESEND_API_KEY) {
+    console.log('📧 [DEV] Email al cliente (no enviado - falta RESEND_API_KEY):', data.email)
+    return { success: true, data: { id: 'dev-mode' } }
+  }
+
   try {
     const { data: emailData, error } = await resend.emails.send({
       from: 'TuWebEn24h <noreply@tuweben24h.com>',
@@ -146,6 +152,12 @@ export async function enviarEmailConfirmacionCliente(data: EmailData) {
 }
 
 export async function enviarEmailNotificacionAdmin(data: EmailData & { descripcion: string }) {
+  // Si no hay API key configurada, solo loguear (modo desarrollo)
+  if (!process.env.RESEND_API_KEY) {
+    console.log('📧 [DEV] Email al admin (no enviado - falta RESEND_API_KEY):', process.env.ADMIN_EMAIL || 'admin@tuweben24h.com')
+    return { success: true, data: { id: 'dev-mode' } }
+  }
+
   try {
     const { data: emailData, error } = await resend.emails.send({
       from: 'Sistema TuWebEn24h <sistema@tuweben24h.com>',

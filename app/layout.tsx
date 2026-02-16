@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Space_Grotesk, Syncopate } from 'next/font/google'
 import { WhatsAppButton } from '@/components/WhatsAppButton'
+import { GoogleAnalytics } from '@/components/GoogleAnalytics'
 import './globals.css'
 
 const spaceGrotesk = Space_Grotesk({ 
@@ -116,6 +117,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className="scroll-smooth">
+      <head>
+        <GoogleAnalytics />
+      </head>
       <body className={`${spaceGrotesk.variable} ${syncopate.variable} font-sans bg-[#0a0a0a] text-white overflow-x-hidden`}>
         {children}
         <WhatsAppButton />

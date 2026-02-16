@@ -3,10 +3,40 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 
+// Debug: Verificar que las variables estén cargadas (solo en desarrollo)
+if (process.env.NODE_ENV === 'development') {
+  console.log('🔍 Supabase Config:', {
+    url: supabaseUrl ? `✅ ${supabaseUrl.substring(0, 30)}...` : '❌ FALTA',
+    key: supabaseAnonKey ? `✅ Configurada (${supabaseAnonKey.substring(0, 20)}...)` : '❌ FALTA'
+  })
+  
+  if (!supabaseUrl || !supabaseAnonKey) {
+    console.error('⚠️ ADVERTENCIA: Variables de entorno de Supabase no configuradas')
+    console.error('Verifica que el archivo .env.local exista y contenga:')
+    console.error('NEXT_PUBLIC_SUPABASE_URL=...')
+    console.error('NEXT_PUBLIC_SUPABASE_ANON_KEY=...')
+  }
+}
+
 // Crear cliente solo si existen las credenciales
-export const supabase = supabaseUrl && supabaseAnonKey 
-  ? createClient(supabaseUrl, supabaseAnonKey)
-  : null as any // Fallback para builds sin configuración
+let supabaseClient: ReturnType<typeof createClient> | null = null
+
+try {
+  if (supabaseUrl && supabaseAnonKey) {
+    supabaseClient = createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        persistSession: false
+      }
+    })
+    console.log('✅ Cliente de Supabase inicializado correctamente')
+  } else {
+    console.warn('⚠️ No se pudo inicializar Supabase: faltan variables de entorno')
+  }
+} catch (error) {
+  console.error('❌ Error al crear cliente de Supabase:', error)
+}
+
+export const supabase = supabaseClient as any
 
 // Tipos para las solicitudes
 export interface Solicitud {

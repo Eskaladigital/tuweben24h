@@ -83,8 +83,14 @@ export default function SolicitarPage() {
     setLoading(true)
 
     try {
-      // Aquí enviarías los datos a Supabase o a una API
-      const response = await fetch('/api/solicitudes', {
+      console.log('📤 Enviando solicitud...', formData)
+      
+      // Usar URL absoluta para evitar problemas de rutas
+      const apiUrl = `${window.location.origin}/api/solicitudes`
+      console.log('🔗 URL de API:', apiUrl)
+      
+      // Enviar datos a la API
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -92,14 +98,40 @@ export default function SolicitarPage() {
         body: JSON.stringify(formData),
       })
 
+      console.log('📥 Respuesta recibida:', response.status, response.statusText)
+
+      // Verificar si la respuesta es JSON
+      const contentType = response.headers.get('content-type')
+      if (!contentType || !contentType.includes('application/json')) {
+        const text = await response.text()
+        console.error('Respuesta no es JSON:', text)
+        throw new Error(`El servidor respondió con un formato inesperado: ${response.status} ${response.statusText}`)
+      }
+
+      const result = await response.json()
+      console.log('📋 Resultado:', result)
+
       if (response.ok) {
+        console.log('✅ Solicitud enviada correctamente')
         router.push('/solicitar/confirmacion')
       } else {
-        alert('Hubo un error al enviar la solicitud. Por favor, inténtalo de nuevo.')
+        console.error('❌ Error del servidor:', result)
+        const errorMessage = result.details || result.error || 'Error desconocido'
+        const hint = result.hint ? `\n\n💡 ${result.hint}` : ''
+        alert(`Error al enviar la solicitud:\n\n${errorMessage}${hint}\n\nPor favor, verifica la consola (F12) para más detalles.`)
       }
-    } catch (error) {
-      console.error('Error:', error)
-      alert('Hubo un error al enviar la solicitud. Por favor, inténtalo de nuevo.')
+    } catch (error: any) {
+      console.error('❌ Error al enviar solicitud:', error)
+      
+      let errorMessage = 'No se pudo conectar con el servidor'
+      
+      if (error.message) {
+        errorMessage = error.message
+      } else if (error.name === 'TypeError' && error.message?.includes('fetch')) {
+        errorMessage = 'No se pudo conectar con el servidor. Verifica que el servidor esté corriendo (npm run dev)'
+      }
+      
+      alert(`Error de conexión:\n\n${errorMessage}\n\nPor favor:\n1. Verifica que el servidor esté corriendo\n2. Revisa la consola (F12) para más detalles\n3. Intenta recargar la página`)
     } finally {
       setLoading(false)
     }

@@ -500,3 +500,10 @@ Si tienes dudas sobre Git o GitHub:
 *Creado el: 5 de Diciembre de 2025*  
 *Última actualización: 5 de Diciembre de 2025*
 
+
+
+
+
+
+
+
